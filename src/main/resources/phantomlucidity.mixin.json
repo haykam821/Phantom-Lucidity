@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"package": "io.github.haykam821.phantomlucidity.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"LivingEntityMixin",
+		"PhantomEntityFindTargetGoalMixin",
+		"PhantomEntityMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

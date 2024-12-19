@@ -1,0 +1,43 @@
+{
+	"schemaVersion": 1,
+	"id": "phantomlucidity",
+	"version": "${version}",
+	"name": "Phantom Lucidity",
+	"description": "Allows players to opt into fighting phantoms.",
+	"authors": [
+		"haykam821"
+	],
+	"contact": {
+		"homepage": "https://github.com/haykam821/Phantom-Lucidity#readme",
+		"issues": "https://github.com/haykam821/Phantom-Lucidity/issues",
+		"sources": "https://github.com/haykam821/Phantom-Lucidity"
+	},
+	"entrypoints": {
+		"main": [
+			"io.github.haykam821.phantomlucidity.PhantomLucidity"
+		],
+		"fabric-datagen": [
+			"io.github.haykam821.phantomlucidity.data.PhantomLucidityDatagen"
+		]
+	},
+	"mixins": [
+		"phantomlucidity.mixin.json",
+		{
+			"config": "phantomlucidity.client.mixin.json",
+			"environment": "client"
+		}
+	],
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://haykam.com/links/discord"
+			}
+		}
+	},
+	"license": "MIT",
+	"depends": {
+		"fabricloader": ">=0.4.0",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

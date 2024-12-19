@@ -1,0 +1,12 @@
+{
+	"entity.phantom.fade": {
+		"sounds": [
+			{
+				"name": "minecraft:block/powder_snow/step6",
+				"pitch": 1,
+				"volume": 0.4
+			}
+		],
+		"subtitle": "subtitles.phantomlucidity.entity.phantom.fade"
+	}
+}
