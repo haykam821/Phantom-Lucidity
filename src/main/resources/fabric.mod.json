@@ -35,6 +35,7 @@
 		}
 	},
 	"license": "MIT",
+	"icon": "assets/phantomlucidity/icon.png",
 	"depends": {
 		"fabricloader": ">=0.4.0",
 		"java": ">=21",
