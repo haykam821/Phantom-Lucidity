@@ -38,7 +38,7 @@ public abstract class PhantomEntityMixin extends MobEntity {
 		}
 	}
 
-	@WrapWithCondition(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FFZ)V"))
+	@WrapWithCondition(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSoundClient(DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FFZ)V"))
 	private boolean preventUnrevealedFlapSound(World world, double x, double y, double z, SoundEvent sound, SoundCategory category, float volume, float pitch, boolean useDistance) {
 		return this.getDataTracker().get(PhantomLucidity.REVEALED);
 	}
@@ -65,7 +65,7 @@ public abstract class PhantomEntityMixin extends MobEntity {
 
 	@Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
 	private void readRevealedNbt(NbtCompound nbt, CallbackInfo ci) {
-		boolean revealed = nbt.contains(PhantomLucidity.REVEALED_KEY) ? nbt.getBoolean(PhantomLucidity.REVEALED_KEY) : true;
+		boolean revealed = nbt.getBoolean(PhantomLucidity.REVEALED_KEY, true);
 		this.getDataTracker().set(PhantomLucidity.REVEALED, revealed);
 	}
 
