@@ -7,8 +7,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 
 import io.github.haykam821.phantomlucidity.PhantomLucidity;
 import net.minecraft.entity.EntityType;
@@ -43,16 +41,6 @@ public abstract class PhantomEntityMixin extends MobEntity {
 	@WrapWithCondition(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSoundClient(DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FFZ)V"))
 	private boolean preventUnrevealedFlapSound(World world, double x, double y, double z, SoundEvent sound, SoundCategory category, float volume, float pitch, boolean useDistance) {
 		return this.getDataTracker().get(PhantomLucidity.REVEALED);
-	}
-
-	@WrapOperation(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/PhantomEntity;setOnFireFor(F)V"))
-	private void discardWhenUnrevealedInDaylight(PhantomEntity entity, float seconds, Operation<Void> operation) {
-		if (this.getDataTracker().get(PhantomLucidity.REVEALED)) {
-			operation.call(entity, seconds);
-		} else {
-			PhantomLucidity.poof(entity);
-			entity.discard();
-		}
 	}
 
 	@Override
