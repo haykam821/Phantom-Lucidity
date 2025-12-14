@@ -15,7 +15,7 @@ public class PhantomLucidityItemTagProvider extends FabricTagProvider.ItemTagPro
 
 	@Override
 	protected void configure(RegistryWrapper.WrapperLookup lookup) {
-		this.getOrCreateTagBuilder(PhantomLucidityItemTags.PHANTOMS_REVEALED_WHILE_USING)
+		this.valueLookupBuilder(PhantomLucidityItemTags.PHANTOMS_REVEALED_WHILE_USING)
 			.add(Items.SPYGLASS);
 	}
 }

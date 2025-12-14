@@ -15,9 +15,10 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PhantomEntity;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.world.World;
 
 @Mixin(PhantomEntity.class)
@@ -63,14 +64,14 @@ public abstract class PhantomEntityMixin extends MobEntity {
 		return super.shouldDropLoot() && this.getDataTracker().get(PhantomLucidity.REVEALED);
 	}
 
-	@Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
-	private void readRevealedNbt(NbtCompound nbt, CallbackInfo ci) {
-		boolean revealed = nbt.getBoolean(PhantomLucidity.REVEALED_KEY, true);
+	@Inject(method = "readCustomData", at = @At("TAIL"))
+	private void readRevealedNbt(ReadView view, CallbackInfo ci) {
+		boolean revealed = view.getBoolean(PhantomLucidity.REVEALED_KEY, true);
 		this.getDataTracker().set(PhantomLucidity.REVEALED, revealed);
 	}
 
-	@Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
-	private void writeRevealedNbt(NbtCompound nbt, CallbackInfo ci) {
-		nbt.putBoolean(PhantomLucidity.REVEALED_KEY, this.getDataTracker().get(PhantomLucidity.REVEALED));
+	@Inject(method = "writeCustomData", at = @At("TAIL"))
+	private void writeRevealedNbt(WriteView view, CallbackInfo ci) {
+		view.putBoolean(PhantomLucidity.REVEALED_KEY, this.getDataTracker().get(PhantomLucidity.REVEALED));
 	}
 }
