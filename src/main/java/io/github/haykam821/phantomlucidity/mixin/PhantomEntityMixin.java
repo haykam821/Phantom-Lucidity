@@ -15,6 +15,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PhantomEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.storage.ReadView;
@@ -60,8 +61,8 @@ public abstract class PhantomEntityMixin extends MobEntity {
 	}
 
 	@Override
-	protected boolean shouldDropLoot() {
-		return super.shouldDropLoot() && this.getDataTracker().get(PhantomLucidity.REVEALED);
+	protected boolean shouldDropLoot(ServerWorld world) {
+		return super.shouldDropLoot(world) && this.getDataTracker().get(PhantomLucidity.REVEALED);
 	}
 
 	@Inject(method = "readCustomData", at = @At("TAIL"))

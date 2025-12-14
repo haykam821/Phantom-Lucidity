@@ -21,7 +21,7 @@ public abstract class LivingEntityMixin extends Entity {
 
 	@Inject(method = "tickItemStackUsage", at = @At("HEAD"))
 	private void tickRevealPhantomsUsingSpyglass(ItemStack stack, CallbackInfo ci) {
-		if (!this.getWorld().isClient() && stack.isIn(PhantomLucidityItemTags.PHANTOMS_REVEALED_WHILE_USING)) {
+		if (!this.getEntityWorld().isClient() && stack.isIn(PhantomLucidityItemTags.PHANTOMS_REVEALED_WHILE_USING)) {
 			PhantomLucidity.tryRevealPhantom((LivingEntity) (Object) this);
 		}
 	}

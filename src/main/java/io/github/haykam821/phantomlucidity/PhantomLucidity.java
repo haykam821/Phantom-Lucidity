@@ -32,7 +32,7 @@ public class PhantomLucidity implements ModInitializer {
 	}
 
 	public static void poof(LivingEntity entity) {
-		entity.getWorld().sendEntityStatus(entity, EntityStatuses.ADD_DEATH_PARTICLES);
+		entity.getEntityWorld().sendEntityStatus(entity, EntityStatuses.ADD_DEATH_PARTICLES);
 		entity.playSound(PhantomLuciditySoundEvents.ENTITY_PHANTOM_FADE);
 		entity.emitGameEvent(GameEvent.ENTITY_ACTION);
 	}
@@ -45,7 +45,7 @@ public class PhantomLucidity implements ModInitializer {
 
 		Box box = new Box(startPos, endPos).expand(1);
 
-		EntityHitResult hitResult = ProjectileUtil.getEntityCollision(entity.getWorld(), entity, startPos, endPos, box, PhantomLucidity::isRevealable, 0);
+		EntityHitResult hitResult = ProjectileUtil.getEntityCollision(entity.getEntityWorld(), entity, startPos, endPos, box, PhantomLucidity::isRevealable, 0);
 		if (hitResult == null) return;
 
 		Entity target = hitResult.getEntity();
